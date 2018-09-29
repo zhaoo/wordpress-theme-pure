@@ -1,7 +1,6 @@
 // Back To Top
 $(document).ready(function() {
     var height = $(window).height();
-    $(".back-to-top").hide();
     $(window).scroll(function() {
         if ($(window).scrollTop() > height) {
             $(".back-to-top").fadeIn(500);

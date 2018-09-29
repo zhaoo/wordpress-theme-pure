@@ -14,5 +14,12 @@
 	        <h3 class="article-title">找不到文章！</h3>
         <?php endif; ?>
     </div>
+    <div class="posts-nav">
+        <?php echo paginate_links(array(
+            'prev_next'          => 0,
+            'before_page_number' => '',
+            'mid_size'           => 5,
+        ));?>
+    </div>
 </div>
 <?php get_footer(); ?>

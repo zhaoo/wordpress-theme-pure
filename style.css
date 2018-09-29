@@ -2,7 +2,7 @@
 Theme Name: Pure
 Theme URI: https://pure.izhaoo.com
 Description: Just 4 write.
-Version: 1.0.0
+Version: 1.1.0
 Author: zhaoo
 Author URI: https://www.izhaoo.com
 Tags: 极简,纯粹,写作,pure
@@ -182,23 +182,23 @@ header {
     padding-bottom: 15px;
 }
 
-.list .article-title h3 {
-    font-weight: normal;
-    display: inline-block;
-    margin: 0;
-}
-
-.list .article-title h3 a {
-    color: #333;
-    font-size: 1.25em;
-}
-
 .list .article-title span {
     margin-right: 5px;
     color: #42b983;
     font-weight: bold;
     display: inline-block;
     font-size: 1.25em;
+}
+
+.list .article-title h3 {
+    font-weight: normal;
+    display: inline-block;
+    margin: 0;
+    font-size: 1.25em;
+}
+
+.list .article-title h3 a {
+    color: #333;
 }
 
 .list .article-title h3 a:hover {
@@ -220,7 +220,7 @@ header {
 }
 
 .article .article-title {
-    margin: 15px 0;
+    margin: 10px 0;
     font-weight: normal;
     text-align: center;
     color: #333;
@@ -230,6 +230,7 @@ header {
 .article .article-info {
     text-align: center;
     font-style: normal;
+    padding-bottom: 20px;
 }
 
 .article .article-info span {
@@ -257,6 +258,33 @@ header {
     margin: 20px;
 }
 
+/* Posts Nav */
+
+.posts-nav {
+    padding: 10px 0;
+}
+
+.posts-nav .page-numbers {
+    border: 1px solid #42b983;
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    line-height: 25px;
+    margin: 20px 3px;
+    color: #42b983;
+}
+
+.posts-nav .page-numbers:first-child {
+    margin-left: 0;
+}
+
+.posts-nav .page-numbers.current,
+.posts-nav .page-numbers:not(.dots):hover {
+    background: #42b983;
+    border-color: #42b983;
+    color: #fff;
+}
+
 /* Footer */
 
 footer {
@@ -279,4 +307,5 @@ footer {
     color: #fff;
     padding: 5px 5px;
     cursor: pointer;
+    display: none;
 }
