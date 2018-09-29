@@ -227,6 +227,32 @@ header {
     font-size: 1.75em;
 }
 
+.article .article-info {
+    text-align: center;
+    font-style: normal;
+}
+
+.article .article-info span {
+    margin-right: 10px;
+    font-size: 0.85em;
+}
+
+.article .article-info span a {
+    color: #333;
+}
+
+.article .article-info span a:hover {
+    color: #42b983;
+    transition: color 0.25s;
+    -moz-transition: color 0.25s;
+    -webkit-transition: color 0.25s;
+    -o-transition: color 0.25s;
+}
+
+.article .article-info i {
+    padding-right: 4px;
+}
+
 .article .content {
     margin: 20px;
 }
