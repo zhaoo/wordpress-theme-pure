@@ -1,0 +1,256 @@
+/*
+Theme Name: Pure
+Theme URI: https://pure.izhaoo.com
+Description: Just 4 write.
+Version: 1.0.0
+Author: zhaoo
+Author URI: https://www.izhaoo.com
+Tags: 极简,纯粹,写作,pure
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/* Common */
+
+body {
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #42b983;
+}
+
+*::selection {
+    background: #aeffc1;
+}
+
+*::-moz-selection {
+    background: #aeffc1;
+}
+
+*::-webkit-selection {
+    background: #aeffc1;
+}
+
+/* Nav */
+
+nav {
+    position: fixed;
+    background-color: #fff;
+}
+
+nav ul {
+    margin: 0 0;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+nav li {
+    list-style: none;
+    display: inline;
+    letter-spacing: normal;
+    margin: 0 5px;
+}
+
+nav li a {
+    color: #42b983;
+}
+
+nav .spread {
+    background-color: #42b983;
+    border: 1px #42b983 solid;
+    color: #fff;
+    padding: 10px 10px;
+    cursor: pointer;
+    float: left;
+}
+
+.spread-true {
+    left: 0px;
+}
+
+.spread-false {
+    left: -200px;
+}
+
+.spread-true,
+.spread-false {
+    transition: left 0.5s;
+    -moz-transition: left 0.5s;
+    -webkit-transition: left 0.5s;
+    -o-transition: left 0.5s;
+}
+
+@media (min-width: 768px) {
+    .menu {
+        display: inline-block;
+    }
+
+    nav {
+        margin-top: 20px;
+    }
+
+    nav ul {
+        left: -200px;
+        position: relative;
+        border: 1px #42b983 solid;
+        padding: 10px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu {
+        display: block;
+    }
+
+    nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav .spread {
+        display: none;
+    }
+
+    nav ul {
+        width: 100%;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* Header */
+
+header {
+    padding: 80px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.25em;
+    background-color: #42b983;
+    color: #fff;
+    display: inline-block;
+    margin: 0 0;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.title a {
+    color: #fff;
+}
+
+.subtitle {
+    color: #42b983;
+}
+
+/* List */
+
+.list {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.list .item {
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.list .article-title {
+    padding-bottom: 15px;
+}
+
+.list .article-title h3 {
+    font-weight: normal;
+    display: inline-block;
+    margin: 0;
+}
+
+.list .article-title h3 a {
+    color: #333;
+    font-size: 1.25em;
+}
+
+.list .article-title span {
+    margin-right: 5px;
+    color: #42b983;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.25em;
+}
+
+.list .article-title h3 a:hover {
+    color: #42b983;
+    transition: color 0.25s;
+    -moz-transition: color 0.25s;
+    -webkit-transition: color 0.25s;
+    -o-transition: color 0.25s;
+}
+
+.list .item p {
+    margin: 0;
+}
+
+/* Article */
+
+.article {
+    padding: 10px 0;
+}
+
+.article .article-title {
+    margin: 15px 0;
+    font-weight: normal;
+    text-align: center;
+    color: #333;
+    font-size: 1.75em;
+}
+
+.article .content {
+    margin: 20px;
+}
+
+/* Footer */
+
+footer {
+    padding-top: 60px;
+    font-size: 0.85em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.copyright a {
+    color: #42b983;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2018;
+    background-color: #42b983;
+    color: #fff;
+    padding: 5px 5px;
+    cursor: pointer;
+}
