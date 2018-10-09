@@ -1,4 +1,4 @@
-// Back To Top
+/* Back To Top */
 $(document).ready(function() {
     var height = $(window).height();
     $(window).scroll(function() {
@@ -15,19 +15,7 @@ $(document).ready(function() {
     });
 });
 
-// Title
-$(document).ready(function() {
-    $(".title").on({
-        mouseenter: function() {
-            $(".title").animate({ "padding": "4px 16px" }, "fast");
-        },
-        mouseout: function() {
-            $(".title").animate({ "padding": "4px 12px" }, "fast");
-        }
-    });
-});
-
-// Nav
+/* Nav Slide */
 function navResponsive() {
     var windowWidth = $(window).width();
     if (windowWidth > 768) {
@@ -66,4 +54,13 @@ $(document).ready(function() {
 
 $(window).resize(function() {
     navResponsive();
+});
+
+/* Pjax */
+
+$(function () {
+    $(document).pjax("a", '.container', {
+        fragment: '.container',
+        timeout: 6000
+    });
 });

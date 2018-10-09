@@ -3,13 +3,9 @@
 </footer>
 <div class="back-to-top">Top</div>
 <script src="<?php bloginfo('template_url'); ?>/js/jquery.min.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/js/highlight.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/js/jquery.pjax.min.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/js/pure.js"></script>
-<!-- pjax -->
-<script>
-    $(function(){
-        $(document).pjax("a", '.container', {fragment:'.container', timeout:6000});
-    });
-</script>
+<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

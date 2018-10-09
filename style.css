@@ -2,7 +2,7 @@
 Theme Name: Pure
 Theme URI: https://pure.izhaoo.com
 Description: Just 4 write.
-Version: 1.1.0
+Version: 1.2.0
 Author: zhaoo
 Author URI: https://www.izhaoo.com
 Tags: 极简,纯粹,写作,pure
@@ -55,8 +55,9 @@ a {
     background: #aeffc1;
 }
 
-/* Nav */
+/* Header */
 
+/* navbar */
 nav {
     position: fixed;
     background-color: #fff;
@@ -99,9 +100,6 @@ nav .spread {
 .spread-true,
 .spread-false {
     transition: left 0.5s;
-    -moz-transition: left 0.5s;
-    -webkit-transition: left 0.5s;
-    -o-transition: left 0.5s;
 }
 
 @media (min-width: 768px) {
@@ -137,19 +135,18 @@ nav .spread {
 
     nav ul {
         width: 100%;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 }
 
-/* Header */
-
-header {
+/* banner */
+.banner {
     padding: 80px;
     margin: 0 auto;
     text-align: center;
 }
 
-.title {
+.blog-name {
     font-size: 1.25em;
     background-color: #42b983;
     color: #fff;
@@ -159,16 +156,26 @@ header {
     cursor: pointer;
 }
 
-.title a {
+.blog-name a {
     color: #fff;
 }
 
-.subtitle {
+.blog-name:hover {
+     padding: 4px 16px;
+}
+
+.blog-name,
+.blog-name:hover {
+    transition: padding 0.25s;
+}
+
+.blog-description {
     color: #42b983;
 }
 
-/* List */
+/* Index */
 
+/* article list */
 .list {
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -199,22 +206,57 @@ header {
 
 .list .article-title h3 a {
     color: #333;
+    position: relative;
 }
 
-.list .article-title h3 a:hover {
-    color: #42b983;
-    transition: color 0.25s;
-    -moz-transition: color 0.25s;
-    -webkit-transition: color 0.25s;
-    -o-transition: color 0.25s;
+.list .article-title h3 a::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    background: #42b983;
+}
+
+.underline:before {
+    height: 2px;
+    transition: transform 0.25s;
+    transform: scaleX(0);
+}
+
+.underline:hover::before {
+    transform: scaleX(1);
 }
 
 .list .item p {
     margin: 0;
 }
 
-/* Article */
+/* posts paginate */
+.posts-paginate {
+    padding: 10px 0;
+}
 
+.posts-paginate .page-numbers {
+    border: 1px solid #42b983;
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    line-height: 25px;
+    margin: 20px 0;
+    color: #42b983;
+}
+
+.posts-paginate .page-numbers.current,
+.posts-paginate .page-numbers:not(.dots):hover {
+    background: #42b983;
+    border-color: #42b983;
+    color: #fff;
+    transition: all 0.25s;
+}
+
+/* Single */
+
+/* article */
 .article {
     padding: 10px 0;
 }
@@ -224,7 +266,7 @@ header {
     font-weight: normal;
     text-align: center;
     color: #333;
-    font-size: 1.75em;
+    font-size: 1.5em;
 }
 
 .article .article-info {
@@ -242,12 +284,10 @@ header {
     color: #333;
 }
 
+.article .article-info span:hover,
 .article .article-info span a:hover {
     color: #42b983;
     transition: color 0.25s;
-    -moz-transition: color 0.25s;
-    -webkit-transition: color 0.25s;
-    -o-transition: color 0.25s;
 }
 
 .article .article-info i {
@@ -255,36 +295,90 @@ header {
 }
 
 .article .content {
-    margin: 20px;
+    padding: 20px;
 }
 
-/* Posts Nav */
-
-.posts-nav {
-    padding: 10px 0;
+/* article style */
+.article .content h3 {
+    border-left: 4px solid #42b983;
+    padding-left: 16px;
+    margin: 0 -20px;
 }
 
-.posts-nav .page-numbers {
-    border: 1px solid #42b983;
-    display: inline-block;
-    text-align: center;
-    width: 25px;
-    line-height: 25px;
-    margin: 20px 3px;
-    color: #42b983;
+/* info box */
+#sc-notice {
+    color: #7da33c;
+    border: 1px solid#aac66d;
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 15px 15px 15px 35px;
 }
 
-.posts-nav .page-numbers:first-child {
-    margin-left: 0;
+#sc-warn {
+    color: #ad9948;
+    border: 1px solid#eac946;
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 15px 15px 15px 35px;
 }
 
-.posts-nav .page-numbers.current,
-.posts-nav .page-numbers:not(.dots):hover {
-    background: #42b983;
-    border-color: #42b983;
+#sc-error {
+    color: #c66;
+    border: 1px solid#ebb1b1;
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 15px 15px 15px 35px;
+}
+
+#sc-tips {
+    color: #777;
+    border: 1px solid#ccc;
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 15px 15px 15px 35px;
+}
+
+#sc-blue {
+    color: #1ba1e2;
+    border: 1px solid#1ba1e2;
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 15px 15px 15px 35px;
+}
+
+#sc-black {
+    color: #3e3e3e;
+    border: 1px solid#3e3e3e;
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 15px 15px 15px 35px;
+}
+
+/* button */
+.btn {
+    border: none;
+    background-color: #42b983;
     color: #fff;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+    margin: 5px 0;
 }
 
+.btn:hover {
+    background-color: #42b983;
+    box-shadow:0 0 30px #3da576 inset;
+}
+
+.btn:active {
+    background-color: #3da576;
+}
+
+.btn:hover,
+.btn:active {
+    transition: all 0.1s;
+}
 /* Footer */
 
 footer {
@@ -298,6 +392,7 @@ footer {
     color: #42b983;
 }
 
+/* back to top */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -308,4 +403,18 @@ footer {
     padding: 5px 5px;
     cursor: pointer;
     display: none;
+}
+
+.back-to-top:hover {
+    background-color: #42b983;
+    box-shadow: 0 0 30px #3da576 inset;
+}
+
+.back-to-top:active {
+    background-color: #3da576;
+}
+
+.back-to-top:hover,
+.back-to-top:active {
+    transition: all 0.1s;
 }
