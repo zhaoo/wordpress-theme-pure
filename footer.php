@@ -6,6 +6,5 @@
 <script src="<?php bloginfo('template_url'); ?>/js/highlight.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/js/jquery.pjax.min.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/js/pure.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

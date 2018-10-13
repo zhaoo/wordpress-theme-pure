@@ -1,13 +1,13 @@
 <?php
-/* Menu */
+// Menu
 register_nav_menus(array(
     'nav_menu' => '菜单',
 ));
 
-/* Thumbnails */
+// Thumbnails
 add_theme_support('post-thumbnails');
 
-/* Title */
+// Title
 function show_title() {
     if ( is_home() ) {
         bloginfo('name'); echo " - "; bloginfo('description');
@@ -24,7 +24,7 @@ function show_title() {
     }
 }
 
-/* Meta */
+// Meta
 function show_meta($meta) {
     $description = '';
     $keywords = '';
@@ -68,7 +68,7 @@ function show_meta($meta) {
     }
 }
 
-/* Posts Paginate */
+// Posts Paginate
 function posts_paginate() {
     echo paginate_links(array(
         'prev_next'    => 1,
@@ -77,7 +77,7 @@ function posts_paginate() {
     ));
 }
 
-/* Tiny MCE Extend*/
+// Tiny MCE Extend
 function enable_more_buttons($buttons) {    // system function extension
     $buttons[] = 'fontselect';
     $buttons[] = 'fontsizeselect';
@@ -127,7 +127,7 @@ function button_download($atts, $content = null) {    // button
 }
 add_shortcode('btn-download', 'button_download');
 
-/* Header Clear */
+// Header Clear
 remove_action('wp_head', 'rsd_link' );     // offline-editor
 remove_action('wp_head', 'wlwmanifest_link' ); 
 remove_action('wp_head', 'wp_generator' );    // wp-version
@@ -150,7 +150,7 @@ function remove_dns_prefetch( $hints, $relation_type ) {    // dns-prefetch
 }
 add_filter( 'wp_resource_hints', 'remove_dns_prefetch', 10, 2 );
 
-/* Remove Google Font */
+// Remove Google Font
 function remove_open_sans() {    
     wp_deregister_style( 'open-sans' );    
     wp_register_style( 'open-sans', false );    
@@ -158,7 +158,7 @@ function remove_open_sans() {
 }    
 add_action( 'init', 'remove_open_sans' );
 
-/* View Statistics */ 
+// View Statistics
 function record_visitors() {
     if (is_singular()) {
         global $post;
@@ -177,6 +177,86 @@ function post_views() {
     $post_ID = $post->ID;
     $views = (int)get_post_meta($post_ID, 'views', true);
     echo $views;
+}
+
+// Like
+add_action('wp_ajax_nopriv_bigfa_like', 'bigfa_like');
+add_action('wp_ajax_bigfa_like', 'bigfa_like');
+function bigfa_like(){
+    global $wpdb,$post;
+    $id = $_POST["um_id"];
+    $action = $_POST["um_action"];
+    if ( $action == 'ding'){
+		$bigfa_raters = get_post_meta($id,'bigfa_ding',true);
+		$expire = time() + 99999999;
+		$domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
+		setcookie('bigfa_ding_'.$id,$id,$expire,'/',$domain,false);
+		if (!$bigfa_raters || !is_numeric($bigfa_raters)) {
+			update_post_meta($id, 'bigfa_ding', 1);
+		}else {
+			update_post_meta($id, 'bigfa_ding', ($bigfa_raters + 1));
+		}   
+		echo get_post_meta($id,'bigfa_ding',true);    
+    }     
+    die;
+}
+function show_like() {
+    global $post;
+    $post_ID = $post->ID;
+    echo (int)get_post_meta($post_ID, 'bigfa_ding', true);
+}
+
+// Comments
+function aurelius_comment($comment, $args, $depth) {
+   $GLOBALS['comment'] = $comment; ?>
+   <div class="comment" id="div-comment-<?php comment_ID(); ?>">
+        <div class="gravatar"> <?php if (function_exists('get_avatar') && get_option('show_avatars')) { echo get_avatar($comment, 36); } ?></div>
+        <div class="comment-content" id="comment-<?php comment_ID(); ?>">
+            <div class="comment-info">
+                <span class="name"><?php printf(__('%s'), get_comment_author_link()) ?></span>
+                <span class="time"><?php echo timeago( $comment->comment_date_gmt ); ?></span>
+                <span class="reply"><?php comment_reply_link(array_merge($args,array('reply_text' =>'回复','depth' =>$depth,'max_depth'=>$args['max_depth']))) ?></span>
+            </div>
+            <div class="comment-text">
+                <?php if ($comment->comment_approved == '0') : ?>
+                    <p>您的评论正在审核中。</p>
+                <?php endif; ?>
+                <?php comment_text(); ?>
+            </div>
+        </div>
+    </div>
+<?php }
+
+// Comments Repair @ Author 
+function ludou_comment_add_at( $comment_text, $comment = '') {
+  if( $comment->comment_parent > 0) {
+    $comment_text = '@<a href="#comment-' . $comment->comment_parent . '">'.get_comment_author( $comment->comment_parent ) . '</a> ' . $comment_text;
+  }
+  return $comment_text;
+}
+add_filter( 'comment_text' , 'ludou_comment_add_at', 20, 2);
+
+// Time Ago
+function timeago($ptime) {
+    $ptime = strtotime($ptime);
+    $etime = time() - $ptime;
+    if ($etime < 1) return '刚刚';
+    $interval = array (
+        12 * 30 * 24 * 60 * 60  =>  '年前 ('.date('Y-m-d', $ptime).')',
+        30 * 24 * 60 * 60       =>  '个月前 ('.date('m-d', $ptime).')',
+        7 * 24 * 60 * 60        =>  '周前 ('.date('m-d', $ptime).')',
+        24 * 60 * 60            =>  '天前',
+        60 * 60                 =>  '小时前',
+        60                      =>  '分钟前',
+        1                       =>  '秒前'
+    );
+    foreach ($interval as $secs => $str) {
+        $d = $etime / $secs;
+        if ($d >= 1) {
+            $r = round($d);
+            return $r . $str;
+        }
+    };
 }
 
 ?>
