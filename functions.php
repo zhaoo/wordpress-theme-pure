@@ -259,4 +259,14 @@ function timeago($ptime) {
     };
 }
 
+
+// FancyBox
+function lightbox_gall_replace ($content) {
+    global $post;
+    $pattern = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)>/i";
+    $replacement = '<a$1href=$2$3$4$5$6 class="fancybox" data-fancybox-group="button">';
+    $content = preg_replace($pattern, $replacement, $content);
+    return $content;
+}
+add_filter('the_content', 'lightbox_gall_replace', 99);
 ?>

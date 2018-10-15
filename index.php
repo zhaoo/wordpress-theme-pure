@@ -14,8 +14,12 @@
 	        <h3 class="article-title">找不到文章！</h3>
         <?php endif; ?>
     </section>
-    <div class="posts-paginate">
-        <?php posts_paginate(); ?>
+    <div id="pagination">
+        <?php next_posts_link(__('加载更多')); ?>
+        <div class="loading">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
     </div>
 </div>
 <?php get_footer(); ?>

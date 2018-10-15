@@ -1,17 +1,20 @@
 // Back To Top
-$(document).ready(function() {
-    var height = $(window).height();
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > height) {
-            $(".back-to-top").fadeIn(500);
+$(document).ready(function () {
+    $(window).scroll(function () {
+        var height = $(window).height();
+        var scrollTop = $(window).scrollTop();
+        var scrollPercent = Math.round((scrollTop) / ($(document).height() - height) * 100);
+        $("#scroll-percent").text(scrollPercent + "%");
+        if (scrollTop > height) {
+            $(".back-to-top").addClass("back-to-top-on");
         } else {
-            $(".back-to-top").fadeOut(500);
+            $(".back-to-top").removeClass("back-to-top-on");
         }
     });
-    $('.back-to-top').click(function() {
+    $('.back-to-top').click(function () {
         $('body,html').animate({
             scrollTop: '0px'
-        }, 900);
+        }, 1000);
     });
 });
 
@@ -52,7 +55,7 @@ $(document).ready(function() {
     navResponsive();
 });
 
-$(window).resize(function() {
+$(window).resize(function () {
     navResponsive();
 });
 
@@ -69,6 +72,10 @@ $(function () {
         $("#comment").on("click", function () {
             $(".comment-fields").fadeIn(300);
         });
+        $(document).ready(function () {
+            $(".fancybox").fancybox();
+        });
+        ajaxPagination();
     });
 });
 
@@ -111,3 +118,34 @@ $(document).ready(function () {
         $(".comment-fields").fadeIn(300);
     });
 });
+
+// FancyBox
+$(document).ready(function() { 
+    $(".fancybox").fancybox();
+});
+
+// Ajax Pagination
+function ajaxPagination () {
+    $("#pagination a").on("click", function () {
+        $(this).hide();
+        $(".loading").show();
+        $.ajax({
+            type: "POST",
+            url: $(this).attr("href") + ".list",
+            success: function (data) {
+                result = $(data).find(".list .item");
+                nextHref = $(data).find("#pagination a").attr("href");
+                $(".list").append(result.fadeIn(300));
+                $("#pagination a").show();
+                $(".loading").hide();
+                if (nextHref != undefined) {
+                    $("#pagination a").attr("href", nextHref);
+                } else {
+                    $("#pagination").remove();
+                }
+            }
+        });
+        return false;
+    });
+}
+ajaxPagination();

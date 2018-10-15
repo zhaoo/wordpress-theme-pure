@@ -3,7 +3,7 @@
         die ('Please do not load this page directly. Thanks!');
     }
 ?>
-<section class="comments">
+<section id="comments" class="comments">
     <?php if (comments_open()): ?>
         <?php if (get_option('comment_registration') && !$user_ID ) : ?>
             <p><?php printf(__('您需要先<a href="%s">登录</a>才能发表评论。'), get_option('siteurl')."/wp-login.php?redirect_to=".urlencode(get_permalink()));?></p>

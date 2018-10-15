@@ -12,6 +12,7 @@
     <link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet">
     <link href="<?php bloginfo('template_url'); ?>/css/iconfont.css" rel="stylesheet">
     <link href="<?php bloginfo('template_url'); ?>/css/dark.css" rel="stylesheet">
+    <link href="<?php bloginfo('template_url'); ?>/css/jquery.fancybox.min.css" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 <?php flush(); ?>
