@@ -1,0 +1,165 @@
+* {
+    outline: none;
+    transition: all 0.2s;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #42B983;
+}
+
+*::selection {
+    background: #AEFFC1;
+}
+
+*::-moz-selection {
+    background: #AEFFC1;
+}
+
+*::-webkit-selection {
+    background: #AEFFC1;
+}
+
+.wrap {
+    margin: 40px 20px 0 0;
+}
+
+.container {
+    position: relative;
+    max-width: 60%;
+    margin: auto;
+    background-color: #FFFFFF;
+    padding: 40px;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 0 5px #DDDDDD;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .wrap {
+        margin: 10px 10px 0 0;
+    }
+
+    .container {
+        max-width: 90%;
+    }
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.navbar .item {
+     width: 25%;
+}
+
+.navbar a {
+    color: #42B983;
+    font-size: 16px;
+    padding: 15px 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.navbar a:before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    background: #42B983;
+}
+
+.underline:before {
+    height: 2px;
+    transition: transform 0.2s;
+    transform: scaleX(0);
+}
+
+.underline:hover::before {
+    transform: scaleX(1);
+}
+
+.active {
+    border-bottom: 2px solid #42B983;
+}
+
+.page {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+h3 {
+    color: #42B983;
+}
+
+.form-group {
+    padding: 40px 0;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.form-group label {
+    display: block;
+    color: #42B983;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.form-group input[type = "text"] {
+    width: 100%;
+}
+
+.form-group textarea {
+    width: 100%;
+}
+
+.radio {
+    display: block;
+    margin: 6px 0;
+}
+
+.form-group input[type=radio]:checked:before {
+    background: #42B983;
+}
+
+.form-group textarea:focus,
+.form-group input:focus,
+.form-group select:focus {
+    border: 1px solid #42B983;
+    transition: all 0.2s;
+    box-shadow: 0 0 1px #42B983;
+}
+
+.btn {
+    border: none;
+    background-color: #42B983;
+    color: #FFFFFF;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 40px 0 0 10px;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #35495E;
+}
+
+.btn-submit,
+.btn-reset {
+    float: right;
+}
+
+.btn-reset {
+    background-color: #FF6464;
+}

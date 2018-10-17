@@ -1,11 +1,52 @@
 <?php
-// Menu
-register_nav_menus(array(
-    'nav_menu' => '菜单',
-));
+// Options
+include('inc/options.php');
 
-// Thumbnails
-add_theme_support('post-thumbnails');
+// Init
+add_action( 'after_setup_theme', 'setup' );
+function setup(){
+    // Menu
+    register_nav_menus(array(
+        'nav_menu' => '菜单',
+    ));
+    // Thumbnails
+    add_theme_support('post-thumbnails');
+    // Header Clear
+    remove_action('wp_head', 'rsd_link' );     // offline-editor
+    remove_action('wp_head', 'wlwmanifest_link' ); 
+    remove_action('wp_head', 'wp_generator' );    // wp-version
+    remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );    //wp-json
+    remove_action('wp_head', 'print_emoji_detection_script', 7 );    // emoji
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_action('wp_head', 'feed_links', 2 );    // feed
+    remove_action('wp_head', 'feed_links_extra', 3);
+    remove_action('wp_head', 'index_rel_link' );    // article-meta
+    remove_action('wp_head', 'parent_post_rel_link', 10, 0 );
+    remove_action('wp_head', 'start_post_rel_link', 10, 0 );
+    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+    function remove_dns_prefetch( $hints, $relation_type ) {    // dns-prefetch
+        if ( 'dns-prefetch' === $relation_type ) {
+            return array_diff( wp_dependencies_unique_hosts(), $hints );
+        }
+        return $hints;
+    }
+    add_filter( 'wp_resource_hints', 'remove_dns_prefetch', 10, 2 );
+    // Remove Google Font
+    function remove_open_sans() {    
+        wp_deregister_style( 'open-sans' );    
+        wp_register_style( 'open-sans', false );    
+        wp_enqueue_style('open-sans','');    
+    }    
+}
+
+function init() {
+    // Options
+    include('inc/options-default.php');
+    update_option('p_options', $default_options);
+}
+add_action( 'load-themes.php', 'init' );
 
 // Title
 function show_title() {
@@ -28,9 +69,10 @@ function show_title() {
 function show_meta($meta) {
     $description = '';
     $keywords = '';
+    $options = get_option('p_options');
     if (is_home() || is_page()) {
-        $description = get_bloginfo('description');
-        $keywords = "WordPress,主题,极简,写作,纯粹,pure";
+        $description = $options['description'];
+        $keywords = $options['keywords'];
     }
     elseif (is_single()) {
         global $post;
@@ -58,7 +100,7 @@ function show_meta($meta) {
         $description = get_bloginfo('description');
     }
     if ($keywords == '') {
-        $keywords = "WordPress,主题,极简,写作,纯粹,pure";
+        $keywords = $options['keywords'];
     }
     if ($meta == 'description') {
         echo trim(strip_tags($description));
@@ -87,7 +129,6 @@ function enable_more_buttons($buttons) {    // system function extension
     return $buttons;
 }
 add_filter("mce_buttons", "enable_more_buttons");
-
 if (!function_exists('wpex_mce_text_sizes')) {    // font number extension
     function wpex_mce_text_sizes( $initArray ){
         $initArray['fontsize_formats'] = "9px 10px 12px 13px 14px 16px 18px 21px 24px 28px 32px 36px 72px";
@@ -95,10 +136,9 @@ if (!function_exists('wpex_mce_text_sizes')) {    // font number extension
     }
 }
 add_filter( 'tiny_mce_before_init', 'wpex_mce_text_sizes' );
-
-function appthemes_add_quicktags() {    // short code
+function appthemes_add_quicktags() {if (wp_script_is('quicktags')){    // short code
     ?> 
-    <script type="text/javascript"> 
+    <script type="text/javascript">
         QTags.addButton('代码高亮', '代码高亮', '<pre><code>\n', '\n</pre></code>\n');  // code highlight
         QTags.addButton('v-notice', '绿框', '<div id="sc-notice">绿色提示框</div>\n');  // article info box
         QTags.addButton('v-error', '红框', '<div id="sc-error">红色提示框</div>\n');
@@ -110,53 +150,20 @@ function appthemes_add_quicktags() {    // short code
         QTags.addButton('下载按钮','下载按钮','[btn-download]下载按钮[/btn-download]\n');
     </script>
     <?php
-}
+}}
 add_action('admin_print_footer_scripts', 'appthemes_add_quicktags' );
-
 function button($atts, $content = null) {    // button
     extract(shortcode_atts(array("title" => ''), $atts));
     $output = '<button class="btn btn-default">'.$content.'</button>';
     return $output;
 }
 add_shortcode('btn', 'button');
-
-function button_download($atts, $content = null) {    // button
+function button_download($atts, $content = null) {    // download-button
     extract(shortcode_atts(array("title" => ''), $atts));
     $output = '<button class="btn btn-default"><i class="iconfont icon-download"></i> '.$content.'</button>';
     return $output;
 }
 add_shortcode('btn-download', 'button_download');
-
-// Header Clear
-remove_action('wp_head', 'rsd_link' );     // offline-editor
-remove_action('wp_head', 'wlwmanifest_link' ); 
-remove_action('wp_head', 'wp_generator' );    // wp-version
-remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );    //wp-json
-remove_action('wp_head', 'print_emoji_detection_script', 7 );    // emoji
-remove_action('admin_print_scripts', 'print_emoji_detection_script');
-remove_action('wp_print_styles', 'print_emoji_styles');
-remove_action('admin_print_styles', 'print_emoji_styles');
-remove_action('wp_head', 'feed_links', 2 );    // feed
-remove_action('wp_head', 'feed_links_extra', 3);
-remove_action('wp_head', 'index_rel_link' );    // article-meta
-remove_action('wp_head', 'parent_post_rel_link', 10, 0 );
-remove_action('wp_head', 'start_post_rel_link', 10, 0 );
-remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-function remove_dns_prefetch( $hints, $relation_type ) {    // dns-prefetch
-    if ( 'dns-prefetch' === $relation_type ) {
-		return array_diff( wp_dependencies_unique_hosts(), $hints );
-    }
-    return $hints;
-}
-add_filter( 'wp_resource_hints', 'remove_dns_prefetch', 10, 2 );
-
-// Remove Google Font
-function remove_open_sans() {    
-    wp_deregister_style( 'open-sans' );    
-    wp_register_style( 'open-sans', false );    
-    wp_enqueue_style('open-sans','');    
-}    
-add_action( 'init', 'remove_open_sans' );
 
 // View Statistics
 function record_visitors() {
@@ -259,7 +266,6 @@ function timeago($ptime) {
     };
 }
 
-
 // FancyBox
 function lightbox_gall_replace ($content) {
     global $post;
@@ -269,4 +275,29 @@ function lightbox_gall_replace ($content) {
     return $content;
 }
 add_filter('the_content', 'lightbox_gall_replace', 99);
+
+// Comments Email Repaly
+function comment_mail_notify ($comment_id) {     
+    $admin_email = get_bloginfo ('admin_email');
+    $comment = get_comment($comment_id);      
+    $comment_author_email = trim($comment->comment_author_email);      
+    $parent_id = $comment->comment_parent ? $comment->comment_parent : '';      
+    $to = $parent_id ? trim(get_comment($parent_id)->comment_author_email) : '';      
+    $spam_confirmed = $comment->comment_approved;      
+    if (($parent_id != '') && ($spam_confirmed != 'spam') && ($to != $admin_email) && ($comment_author_email == $admin_email)) {   
+    $wp_email = 'no-reply@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));   
+    $subject = '您在 [' . get_option("blogname") . '] 的留言有了回应';   
+    $message =  trim(get_comment($parent_id)->comment_author) . ', 您好!  
+        您曾在《' . get_the_title($comment->comment_post_ID) . '》的留言:'  
+        . trim(get_comment($parent_id)->comment_content) . '   ' . trim($comment->comment_author) . ' 给您的回应:'   . trim($comment->comment_content) . '   您可以点击 ' . htmlspecialchars(get_comment_link($parent_id)) . '查看回应完整內容  欢迎再度光临' . get_option('home') . '' . get_option('blogname') . '  (此邮件由系统自动发出, 请勿回复.) ';  
+        $from = "From: \"" . get_option('blogname') . "\" <$wp_email>";   
+        $mail_headers = "$from\nContent-Type: text/html; charset=" . get_option('blog_charset') . "\n";   
+        wp_mail( $to, $subject, $message, $headers );   
+    }      
+}      
+add_action('comment_post', 'comment_mail_notify');
+
+// Options Append
+$options = get_option('p_options');
+eval($options['php']);
 ?>

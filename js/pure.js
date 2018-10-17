@@ -59,26 +59,6 @@ $(window).resize(function () {
     navResponsive();
 });
 
-// Pjax
-$(function () {
-    $(document).pjax("a", '.container', {
-        fragment: '.container',
-        timeout: 6000
-    });
-    $(document).on('pjax:complete', function () {
-        $('pre code').each(function (i, e) {
-            hljs.highlightBlock(e)
-        });
-        $("#comment").on("click", function () {
-            $(".comment-fields").fadeIn(300);
-        });
-        $(document).ready(function () {
-            $(".fancybox").fancybox();
-        });
-        ajaxPagination();
-    });
-});
-
 // Start Highlist.js
 $(document).ready(function () {
     $('pre code').each(function (i, e) {

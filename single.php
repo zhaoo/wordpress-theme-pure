@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<?php $options = get_option('p_options'); ?>
 <div class="container">
     <div class="article">
         <hgroup class="header">
@@ -14,31 +15,33 @@
         <article class="content">
             <?php while (have_posts()): the_post(); the_content(); endwhile; ?>
         </article>
-        <section class="footer">
-            <div class="info">
-                <span class="tags"><?php echo get_the_tag_list('','',''); ?></span>
-                <div class="evaluate-button">
-                    <button class="share"><i class="iconfont icon-share_fill"></i></button>
-                    <button class="redpacket"><i class="iconfont icon-redpacket_fill"></i></button>
-                    <button id="post-like" data-action="ding" data-id="<?php the_ID(); ?>" class="like<?php if(isset($_COOKIE['bigfa_ding_'.$post->ID])) echo ' like-done';?>">
-                        <i class="iconfont icon-like_fill"></i> 
-                        <span class="count">
-                            <?php 
-                                if( get_post_meta($post->ID,'bigfa_ding',true) ){            
-                                    echo get_post_meta($post->ID,'bigfa_ding',true);
-                                } else {
-                                    echo '0';
-                                }
-                            ?>
-                        </span>
-                    </button>
+        <?php if ($options['article-footer']): ?>
+            <section class="footer">
+                <div class="info">
+                    <span class="tags"><?php echo get_the_tag_list('','',''); ?></span>
+                    <div class="evaluate-button">
+                        <button class="share"><i class="iconfont icon-share_fill"></i></button>
+                        <button class="redpacket"><i class="iconfont icon-redpacket_fill"></i></button>
+                        <button id="post-like" data-action="ding" data-id="<?php the_ID(); ?>" class="like<?php if(isset($_COOKIE['bigfa_ding_'.$post->ID])) echo ' like-done';?>">
+                            <i class="iconfont icon-like_fill"></i> 
+                            <span class="count">
+                                <?php 
+                                    if( get_post_meta($post->ID,'bigfa_ding',true) ){            
+                                        echo get_post_meta($post->ID,'bigfa_ding',true);
+                                    } else {
+                                        echo '0';
+                                    }
+                                ?>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="navigation">
-                <span class="pre"><span>上一篇：</span><?php if (get_previous_post()) previous_post_link('%link'); else echo "无"; ?></span>
-                <span class="next"><span>下一篇：</span><?php if (get_next_post()) next_post_link('%link'); else echo "无"; ?></span>
-            </div>
-        </section>
+                <div class="navigation">
+                    <span class="pre"><span>上一篇：</span><?php if (get_previous_post()) previous_post_link('%link'); else echo "无"; ?></span>
+                    <span class="next"><span>下一篇：</span><?php if (get_next_post()) next_post_link('%link'); else echo "无"; ?></span>
+                </div>
+            </section>
+        <?php endif; ?>
         <?php comments_template(); ?>
     </div>
 </div>

@@ -2,10 +2,10 @@
 Theme Name: Pure
 Theme URI: https://pure.izhaoo.com
 Description: Just 4 write.
-Version: 1.3.1
+Version: 1.4.0
 Author: zhaoo
 Author URI: https://www.izhaoo.com
-Tags: 极简,纯粹,写作,pure
+Tags: Pure,Minimalism,Responsive,Ajax,Pjax,Write,Free,zhaoo
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -124,18 +124,16 @@ nav .spread {
 
 .spread-true,
 .spread-false {
-    transition: left 0.5s;
+    transition: left 0.4s;
 }
 
 @media (min-width: 768px) {
     .menu {
         display: inline-block;
     }
-
     nav {
         margin-top: 20px;
     }
-
     nav ul {
         left: -200px;
         position: relative;
@@ -148,16 +146,13 @@ nav .spread {
     .menu {
         display: block;
     }
-
     nav {
         width: 100%;
         text-align: center;
     }
-
     nav .spread {
         display: none;
     }
-
     nav ul {
         width: 100%;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -187,12 +182,12 @@ nav .spread {
 }
 
 .banner .blog-name:hover {
-     padding: 4px 16px;
+    padding: 4px 16px;
 }
 
 .banner .blog-name,
 .banner .blog-name:hover {
-    transition: padding 0.3s;
+    transition: padding 0.2s;
 }
 
 .banner .blog-description {
@@ -250,7 +245,7 @@ nav .spread {
 
 .underline:before {
     height: 2px;
-    transition: transform 0.3s;
+    transition: transform 0.2s;
     transform: scaleX(0);
 }
 
@@ -258,7 +253,7 @@ nav .spread {
     transform: scaleX(1);
 }
 
-/* Ajax Paginatione */
+/* Paginatione */
 
 #pagination {
     padding: 20px 0;
@@ -271,12 +266,35 @@ nav .spread {
     border: 1px solid #D6D6D6;
     color: #ADADAD;
     height: 20px;
+    transition: all 0.2s;
 }
 
 #pagination a:hover {
     border: 1px solid #42B983;
     color: #42B983;
-    transition: all 0.3s;
+    transition: all 0.2s;
+}
+
+#pagaination-default {
+    padding: 10px 0;
+}
+
+#pagaination-default .page-numbers {
+    border: 1px solid #42b983;
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    line-height: 25px;
+    margin: 20px 0;
+    color: #42b983;
+}
+
+#pagaination-default .page-numbers.current,
+#pagaination-default .page-numbers:not(.dots):hover {
+    background: #42b983;
+    border-color: #42b983;
+    color: #fff;
+    transition: all 0.25s;
 }
 
 .loading {
@@ -366,7 +384,7 @@ nav .spread {
 .article .header .article-info span:hover,
 .article .header .article-info span a:hover {
     color: #42B983;
-    transition: color 0.3s;
+    transition: color 0.2s;
 }
 
 .article .header .article-info i {
@@ -488,14 +506,19 @@ a img.aligncenter {
     margin: 5px 0;
 }
 
+.btn a {
+    color: #FFFFFF;
+}
+
 .btn:hover,
 .btn:active {
     background-color: #35495E;
 }
 
-.btn:hover,
+.btn,
+.btn a .btn:hover,
 .btn:active {
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 /* Article Footer */
@@ -562,9 +585,10 @@ a img.aligncenter {
     background-color: #FFBCCF;
 }
 
+.article .info .tags a,
 .article .info .tags a:hover {
     background-color: #354935;
-    transition: color 0.3s;
+    transition: all 0.2s;
 }
 
 .article .info .like {
@@ -587,7 +611,7 @@ a img.aligncenter {
 .article .info .redpacket {
     background-color: #FFFFFF;
     padding: 0 8px;
-    transition: all 0.3s;
+    transition: all 0.2s;
     height: 20px;
 }
 
@@ -615,6 +639,7 @@ a img.aligncenter {
 .article .info .share:hover,
 .article .info .redpacket:hover {
     color: #FFFFFF;
+    transition: all 0.2s;
 }
 
 .like-done {
@@ -632,7 +657,7 @@ a img.aligncenter {
 
 .article .navigation span a:hover {
     color: #42B983;
-    transition: color 0.3s;
+    transition: color 0.2s;
 }
 
 .article .navigation .pre {
@@ -653,17 +678,14 @@ a img.aligncenter {
         padding-top: 15px;
         padding-bottom: 5px;
     }
-
     .article .info .evaluate-button {
         padding-bottom: 15px;
         padding-top: 5px;
     }
-
     .article .info .evaluate-button,
     .article .info .tags {
         float: none;
     }
-
     .article .navigation .pre,
     .article .navigation .next {
         float: none;
@@ -700,7 +722,7 @@ a img.aligncenter {
 
 .comment-form #comment:focus {
     border: 1px solid #42B983;
-    transition: all 0.3s;
+    transition: all 0.2s;
     box-shadow: 0 0 1px #42B983;
 }
 
@@ -736,7 +758,7 @@ a img.aligncenter {
 
 .comment-form p input:required:valid,
 .comment-form p input[required]:focus:invalid {
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 .comment-form .comment-fields {
@@ -752,16 +774,13 @@ a img.aligncenter {
     display: block;
     margin: 5px 0;
     float: right;
+    transition: all 0.2s;
 }
 
 .comment-form #submit:hover,
 .comment-form #submit:active {
     background-color: #35495E;
-}
-
-.comment-form #submit:hover,
-.comment-form #submit:active {
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 .comment-form a {
@@ -770,6 +789,7 @@ a img.aligncenter {
 
 .comment-form a:hover {
     color: #42B983;
+    transition: all 0.2s;
 }
 
 .comment-container {
@@ -794,12 +814,12 @@ a img.aligncenter {
 
 .comment .gravatar img {
     border-radius: 100%;
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 .comment .gravatar img:hover {
     transform: rotate(180deg);
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 .comment .comment-content {
@@ -823,7 +843,7 @@ a img.aligncenter {
 }
 
 .comment .comment-info {
-   overflow: hidden;
+    overflow: hidden;
 }
 
 .comments li {
@@ -863,12 +883,13 @@ footer {
     padding: 5px 5px;
     cursor: pointer;
     font-size: 0.85em;
-    transition: bottom 0.3s;
+    transition: bottom 0.2s;
+    transition: all 0.2s;
 }
 
 .back-to-top-on {
     bottom: 30px;
-    transition: bottom 0.3s;
+    transition: all 0.2s;
 }
 
 .back-to-top i {
@@ -878,11 +899,7 @@ footer {
 .back-to-top:hover,
 .back-to-top:active {
     background-color: #35495E;
-}
-
-.back-to-top:hover,
-.back-to-top:active {
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 @media (max-width: 768px) {

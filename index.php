@@ -14,6 +14,8 @@
 	        <h3 class="article-title">找不到文章！</h3>
         <?php endif; ?>
     </section>
+    <?php $options = get_option('p_options'); ?>
+    <?php if ($options['ajax']): ?>
     <div id="pagination">
         <?php next_posts_link(__('加载更多')); ?>
         <div class="loading">
@@ -21,5 +23,10 @@
             <div class="double-bounce2"></div>
         </div>
     </div>
+    <?php else: ?>
+    <div id="pagaination-default">
+        <?php posts_paginate(); ?>
+    </div>
+    <?php endif; ?>
 </div>
 <?php get_footer(); ?>
