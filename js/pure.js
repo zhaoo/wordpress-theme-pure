@@ -25,7 +25,7 @@ function navResponsive() {
         var isSpread = false;
         $(window).off('.navChange');
         $("nav").show();
-        $(".spread").on("click", function() {
+        $(".spread").on("click", function () {
             if (isSpread == false) {
                 $("ul").addClass("spread-true");
                 $("ul").removeClass("spread-false");
@@ -34,14 +34,14 @@ function navResponsive() {
             } else {
                 $("ul").addClass("spread-false");
                 $("ul").removeClass("spread-true");
-                 $(".spread").text('>');
+                $(".spread").text('>');
                 isSpread = false;
             }
         });
     } else {
         var height = 280;
         $("nav").hide();
-        $(window).on('scroll.navChange', function() {
+        $(window).on('scroll.navChange', function () {
             if ($(window).scrollTop() > height) {
                 $("nav").fadeIn(500);
             } else {
@@ -51,7 +51,7 @@ function navResponsive() {
     }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     navResponsive();
 });
 
@@ -100,12 +100,12 @@ $(document).ready(function () {
 });
 
 // FancyBox
-$(document).ready(function() { 
+$(document).ready(function () {
     $(".fancybox").fancybox();
 });
 
 // Ajax Pagination
-function ajaxPagination () {
+function ajaxPagination() {
     $("#pagination a").on("click", function () {
         $(this).hide();
         $(".loading").show();
