@@ -7,8 +7,8 @@ A pure theme for WordPress.
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](https://mit-license.org/)
 [![Github Releases](https://img.shields.io/badge/downloads-184KB-brightgreen.svg)](https://github.com/izhaoo/pure/releases)
 
-* [Demo](https://pure.izhaoo.com)
-* [Logs](https://pure.izhaoo.com/development-log.html)
+[Preview](https://pure.izhaoo.com)
+[Development Logs](https://pure.izhaoo.com/development-log.html)
 
 ## Introduce
 
