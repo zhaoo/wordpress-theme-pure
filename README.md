@@ -1,4 +1,4 @@
-# Pure
+# wordpress-theme-pure
 
 A pure theme for WordPress.
 
