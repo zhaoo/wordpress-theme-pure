@@ -8,6 +8,7 @@ A pure theme for WordPress.
 [![Github Releases](https://img.shields.io/badge/downloads-184KB-brightgreen.svg)](https://github.com/izhaoo/pure/releases)
 
 [Preview](https://pure.izhaoo.com)
+
 [Development Logs](https://pure.izhaoo.com/development-log.html)
 
 ## Introduce
