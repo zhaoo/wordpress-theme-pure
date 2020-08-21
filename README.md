@@ -1,3 +1,9 @@
+**She is dead**
+
+**But she was reborn**
+
+**[hexo-theme-zhaoo](https://github.com/izhaoo/hexo-theme-zhaoo)**
+
 # wordpress-theme-pure
 
 A pure theme for WordPress.
